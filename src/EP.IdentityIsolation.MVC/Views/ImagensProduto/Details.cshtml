@@ -1,0 +1,50 @@
+﻿@model EP.IdentityIsolation.MVC.ViewModels.ImagensProdutoViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ImagensProdutoViewModel</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagemTitulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagemTitulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagemDescricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagemDescricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagemTamanho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagemTamanho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdutoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProdutoId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ImagemId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<EP.IdentityIsolation.MVC.ViewModels.ImagensProdutoViewModel>
+
+@{
+    ViewBag.Title = "BuscaPorNome";
+}
+
+<h2>BuscaPorNome</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagemTitulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagemDescricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagemTamanho)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdutoId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagemTitulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagemDescricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagemTamanho)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProdutoId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ImagemId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ImagemId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ImagemId })
+        </td>
+    </tr>
+}
+
+</table>

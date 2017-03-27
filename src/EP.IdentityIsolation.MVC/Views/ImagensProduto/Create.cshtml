@@ -1,0 +1,73 @@
+﻿@model EP.IdentityIsolation.MVC.ViewModels.ImagensProdutoViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+<h4>@ViewBag.resposta</h4>
+
+
+@using (Html.BeginForm("Create", "ImagensProduto", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ImagensProdutoViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImagemTitulo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ImagemTitulo)
+                @Html.ValidationMessageFor(model => model.ImagemTitulo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImagemDescricao, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ImagemDescricao)
+                @Html.ValidationMessageFor(model => model.ImagemDescricao)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FormatoImg, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FormatoImg)
+                @Html.ValidationMessageFor(model => model.FormatoImg)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label("Produto?", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ProdutoId", string.Empty)
+                @Html.ValidationMessageFor(model => model.Produto)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Upload Imagem", new { @class = "control-label col-md-2" })
+            <div>
+                <input name="uploadFile" type="file" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

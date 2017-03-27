@@ -1,0 +1,72 @@
+﻿@model IEnumerable<EP.IdentityIsolation.MVC.ViewModels.ImagensProdutoViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+                      @using (Html.BeginForm("BuscaPorNome", "ImagensProduto", System.Web.Mvc.FormMethod.Get))
+                      {
+                          <p>
+                              Busca por nome do produto: @Html.TextBox("nome")
+                              <input type="submit" value="Busca" />
+                          </p>
+                      }
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagemTitulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagemDescricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagemTamanho)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FormatoImg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdutoId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagemTitulo)
+        </td>
+        <td>
+            <img src="@Url.Action("getImg")" width="100" height="100" alt="@item.ImagemTitulo" />
+     
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagemDescricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagemTamanho)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FormatoImg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProdutoId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ImagemId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ImagemId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ImagemId })
+        </td>
+    </tr>
+}
+
+</table>
