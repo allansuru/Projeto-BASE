@@ -30,42 +30,30 @@ namespace EP.IdentityIsolation.MVC.Controllers
             var ImgProddViewModel = Mapper.Map<IEnumerable<ImagensProduto>, IEnumerable<ImagensProdutoViewModel>>(_ImgProdApp.GetAll());
 
             int id = 0;
-            byte[] imgContent = null;
-            string contentType = string.Empty;
+
             foreach (var item in ImgProddViewModel.ToList())
             {
                 //pego o q preciso aqui
 
                 id = item.ImagemId;
-                imgContent = item.Imagem;
-                contentType = item.FormatoImg;
             }
             //pega byte da imagem
 
-            getImg();
+            getImg(id);
             return View(ImgProddViewModel);
         }
 
-        public FileContentResult getImg()
+        public FileContentResult getImg(int id)
         {
 
-            var ImgProddViewModel = Mapper.Map<IEnumerable<ImagensProduto>, IEnumerable<ImagensProdutoViewModel>>(_ImgProdApp.GetAll());
+            var imgProduto = _ImgProdApp.GetById(id);
 
-            int id = 0;
-            byte[] imgContent = null;
-            string contentType = string.Empty;
+            byte[] imgContent = imgProduto.Imagem;
+            string contentType =imgProduto.FormatoImg;
             
-            foreach (var item in ImgProddViewModel.ToList())
-            {
-                //pego o q preciso aqui
+  
 
-                id = item.ImagemId;
-                imgContent = item.Imagem;
-                contentType = item.FormatoImg;
-            }
-            byte[] byteArray = imgContent;
-
-            return byteArray != null ? new FileContentResult(byteArray, contentType) : null;
+            return imgContent != null ? new FileContentResult(imgContent, contentType) : null;
         }
 
         public ActionResult BuscaPorNome(string nome)
